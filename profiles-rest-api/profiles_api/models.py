@@ -12,7 +12,7 @@ class UserProfileManager(BaseUserManager):
         if not email:
             raise ValueError('User must have an email address')
 
-        email = self.normalize_email(emai)
+        email = self.normalize_email(email)
         user = self.model(email=email , name=name)
 
         user.set_password(password)
@@ -31,7 +31,7 @@ class UserProfileManager(BaseUserManager):
         return user
 
 
-class Userprofile(AbstractBaseUser, PermissionsMixin):
+class UserProfile(AbstractBaseUser, PermissionsMixin):
     """Database model for users in the system"""
     email = models.EmailField(max_length=255, unique=True)
     name = models.CharField(max_length=255)
@@ -53,4 +53,4 @@ class Userprofile(AbstractBaseUser, PermissionsMixin):
 
     def __str__(self):
         """Return string represenation of our user"""
-        return sefl.email
+        return self.email
